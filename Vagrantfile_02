@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
   server.vm.network "private_network", bridge: "Default Switch"
   server.vm.provision "shell", inline: <<-SHELL
     sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/#g' /etc/ssh/sshd_config
+    echo "ssh-rsa XXX== SkyTorin" >> .ssh/authorized_keys
     service ssh restart
     apt install net-tools 
   SHELL
